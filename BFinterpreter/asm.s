@@ -23,7 +23,7 @@ _eval:
     push rdx
 
     sub rsp, 64
-    sub rsp, 1600
+    sub rsp, 65536
 
     xor rbx, rbx
 
@@ -43,8 +43,6 @@ clear:
     xor rbx, rbx
 
     lea rdx, [rip + arr]
-//    mov rdx, qword ptr [arr]
-//    inc [rdx]
 
     mov [rbp - 48], rcx
     mov [rbp - 56], rdx
@@ -63,6 +61,8 @@ clear:
 
     mov [rbp - 88], rbp
     sub [rbp - 88], 88
+    sub dword ptr [rbp - 88], 65536
+//    sub [rbp - 88], 65624
 
 begin:
 //  while not eof
@@ -151,7 +151,12 @@ begin_loop:
     cmp byte ptr [rcx], 91
     jne end_loop
 
-    sub [rbp - 88], 8
+//    sub [rbp - 88], 8
+//    mov [rbp - 72], rax
+//    mov rax, [rbp - 88]
+//    mov [rax], rbx
+
+    add [rbp - 88], 2
     mov [rbp - 72], rax
     mov rax, [rbp - 88]
     mov [rax], rbx
@@ -169,22 +174,29 @@ end_loop:
 
     mov rax, rbp
     sub rax, 88
+    sub rax, 65536
 
     cmp [rbp - 88], rax
     je end_section
+
+    mov rax, [rbp - 88]
 
     cmp [rdx], 0
 
     jne return_to_begin
 
-    add [rbp - 88], 8
+    sub [rbp - 88], 2
     mov rax, [rbp - 72]
     jmp end_section
 
 return_to_begin:
-    mov rax, [rax]
-    mov rbx, [rax]
+    mov [rbp - 64], rcx
+    mov rcx, [rax]
+    xor rax, rax
+    mov al, cl
+    mov rbx, rax
     mov rax, [rbp - 72]
+    mov rcx, [rbp - 64]
 
     jmp end_section
 
@@ -196,7 +208,7 @@ end_section:
 
 end:
 
-    add rsp, 1600
+    add rsp, 65536
     add rsp, 64
     pop rdx
     pop rcx
