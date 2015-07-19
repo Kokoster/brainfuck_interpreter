@@ -10,7 +10,7 @@
 
 .data
 memory_array  : .space 30000, 0 // ??
-//brackets_array: .space 65513107236, 0
+//brackets_array: .space 131072, 0
 brackets_array: .space 131072, 0
 
 .text
