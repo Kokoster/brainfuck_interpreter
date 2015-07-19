@@ -9,7 +9,9 @@
 .globl _eval
 
 .data
-arr: .space 30000, 0 // ??
+memory_array  : .space 30000, 0 // ??
+//brackets_array: .space 65513107236, 0
+brackets_array: .space 131072, 0
 
 .text
 
@@ -22,29 +24,51 @@ _eval:
     push rcx
     push rdx
 
-    sub rsp, 64
-    sub rsp, 65536 // ??
+    sub rsp, 64 + 131072
+//    sub rsp, 131072 // ??
 
     xor rbx, rbx
+    xor rcx, rcx
 
-clean_array:
+clean_memory_array:
     cmp rbx, 30000
     je clear
 
-    lea rcx, [rip + arr]
+    lea rcx, [rip + memory_array]
     add rcx, rbx
     mov [rcx], 0
 
     inc rbx
 
-    jmp clean_array
+    jmp clean_memory_array
 
 clear:
     xor rbx, rbx
+    xor rdx, rdx
+    xor rcx, rcx
 
-    lea rdx, [rip + arr]
+clean_brackets_array:
+    cmp rbx, 32768
+    je everything_is_clear
 
-    mov [rbp - 48], rcx // ??
+    lea rcx, [rip + brackets_array]
+    mov rdx, rbx
+    imul rdx, rdx, 2
+    add rcx, rdx
+
+    mov [rcx], 0
+
+    inc rbx
+
+    jmp clean_brackets_array
+
+everything_is_clear:
+
+    xor rbx, rbx
+
+    lea rdx, [rip + memory_array]
+
+//    mov [rbp - 48], rcx // ??
     mov [rbp - 56], rdx // [rbp - 56] memory array
 
     mov [rbp - 40], rdi // [rbp - 40] eval string
@@ -56,13 +80,15 @@ clear:
     mov [rbp - 32], rax // [rpb - 32] – eval string length
     xor rbx, rbx // rbx - current eval string index, bx?
 
-    mov rcx, [rbp - 48] // ??
+//    mov rcx, [rbp - 48] // ??
     mov rdx, [rbp - 56]
 
-    mov [rbp - 88], rbp // [rbp - 88] current bracket ptr
-    sub [rbp - 88], 88
-    sub dword ptr [rbp - 88], 65536 // 3 op -> 1, index?
-//    sub [rbp - 88], 65624
+//    mov [rbp - 88], rbp // [rbp - 88] current bracket ptr
+//    sub [rbp - 88], 88
+//    sub dword ptr [rbp - 88], 131072 // 3 op -> 1, index?
+
+    mov dword ptr [rbp - 88], 0 // brackets array index
+    mov dword ptr [rbp - 84], 0
 
 begin:
 //  while not eof
@@ -157,12 +183,27 @@ begin_loop:
 //    mov [rax], rbx
 
 // ?? simplify
-    add [rbp - 88], 2 // inc brackets stack ptr
-    mov [rbp - 72], rax // rax - ??
-    mov rax, [rbp - 88]
-    mov [rax], rbx
+//    add [rbp - 88], 2 // inc brackets stack ptr
+//    mov [rbp - 72], rax // rax - ??
+//    mov rax, [rbp - 88]
+//    mov [rax], rbx
 
-    mov rax, [rbp - 72] // ??
+    mov [rbp - 72], rcx
+    mov [rbp - 64], rdx
+
+    lea rax, [rip + brackets_array]
+    xor rcx, rcx
+    mov rcx, [rbp - 88]
+    imul rcx, rcx, 2
+    add rax, rcx
+//    mov [rax], rbx
+    mov [rax], word ptr rbx
+    inc [rbp - 88]
+
+    mov rcx, [rbp - 72]
+    mov rdx, [rbp - 64]
+
+//    mov rax, [rbp - 72] // ??
 
     jmp end_section
 
@@ -171,34 +212,60 @@ end_loop:
     cmp byte ptr  [rcx], 93
     jne end_section
 
-    mov [rbp - 72], rax // ?
+//    mov [rbp - 72], rax // ?
+//
+//    mov rax, rbp
+////    sub rax, 88
+////    sub rax, 131072
+//    sub rax, 88 + 131072 // ?
+//
+//    cmp [rbp - 88], rax // check excess closing bracket
+//    je end_section
+//
+//    mov rax, [rbp - 88]
+//
+//    cmp [rdx], 0
+//
+//    jne return_to_begin
+//
+//    sub [rbp - 88], 2
+//    mov rax, [rbp - 72] // ?
 
-    mov rax, rbp
-//    sub rax, 88
-//    sub rax, 65536
-    sub rax, 88 + 65536 // ?
-
-    cmp [rbp - 88], rax // check excess closing bracket
-    je end_section
-
-    mov rax, [rbp - 88]
+    cmp [rbp - 88], 0 // check excess closing brackets
+    jle end_section
 
     cmp [rdx], 0
-
     jne return_to_begin
 
-    sub [rbp - 88], 2
-    mov rax, [rbp - 72] // ?
+    dec [rbp - 88]
+
     jmp end_section
 
 return_to_begin:
+//    mov [rbp - 64], rcx
+//    mov rcx, [rax] // rax - current bracket ptr
+//    xor rax, rax
+//    mov al, cl //  ?? 1) two bytes! test first
+//    mov rbx, rax // ? 2) mov bx, cx ?
+//    mov rax, [rbp - 72] // ?
+//    mov rcx, [rbp - 64]
+
     mov [rbp - 64], rcx
-    mov rcx, [rax] // rax - current bracket ptr
-    xor rax, rax
-    mov al, cl //  ?? 1) two bytes! test first
-    mov rbx, rax // ? 2) mov bx, cx ?
-    mov rax, [rbp - 72] // ?
+    mov [rbp - 72], rdx
+
+    lea rax, [rip + brackets_array]
+    xor rdx, rdx
+    mov rdx, [rbp - 88]
+    imul rdx, rdx, 2
+    add rax, rdx
+    sub rax, 2
+    xor rcx, rcx
+    mov rdx, [rax]
+    mov cx, dx
+    mov bx, cx
+
     mov rcx, [rbp - 64]
+    mov rdx, [rbp - 72]
 
     jmp end_section
 
@@ -210,7 +277,7 @@ end_section:
 
 end:
 
-    add rsp, 65536 // ? 65536 + 64
+    add rsp, 131072 // ? 131072 + 64
     add rsp, 64
     pop rdx
     pop rcx
