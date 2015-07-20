@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6A0FE38E1B490F0800D01E9E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A0FE38D1B490F0800D01E9E /* main.cpp */; };
-		6A0FE3931B49103B00D01E9E /* asm.s in Sources */ = {isa = PBXBuildFile; fileRef = 6A0FE3921B49103B00D01E9E /* asm.s */; };
+		6AFBF0A31B5CE1C500A65D09 /* asm.s in Sources */ = {isa = PBXBuildFile; fileRef = 6AFBF0A11B5CE1C500A65D09 /* asm.s */; };
+		6AFBF0A41B5CE1C500A65D09 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6AFBF0A21B5CE1C500A65D09 /* main.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,10 +25,15 @@
 
 /* Begin PBXFileReference section */
 		6A0FE38A1B490F0800D01E9E /* BFinterpreter */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BFinterpreter; sourceTree = BUILT_PRODUCTS_DIR; };
-		6A0FE38D1B490F0800D01E9E /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		6A0FE3921B49103B00D01E9E /* asm.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = asm.s; sourceTree = "<group>"; };
-		6A0FE3941B49123100D01E9E /* Code.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Code.txt; sourceTree = "<group>"; };
-		6A0FE3951B4923BD00D01E9E /* Test.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Test.txt; sourceTree = "<group>"; };
+		6AFBF0A11B5CE1C500A65D09 /* asm.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = asm.s; sourceTree = "<group>"; };
+		6AFBF0A21B5CE1C500A65D09 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		6AFBF0A61B5CE1D100A65D09 /* code.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = code.txt; sourceTree = "<group>"; };
+		6AFBF0A71B5CE1D100A65D09 /* first.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = first.txt; sourceTree = "<group>"; };
+		6AFBF0A81B5D1BF100A65D09 /* second.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = second.txt; sourceTree = "<group>"; };
+		6AFBF0A91B5D1C7800A65D09 /* third.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = third.txt; sourceTree = "<group>"; };
+		6AFBF0AA1B5D1D4600A65D09 /* fourth.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fourth.txt; sourceTree = "<group>"; };
+		6AFBF0AB1B5D1DC600A65D09 /* fifth.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fifth.txt; sourceTree = "<group>"; };
+		6AFBF0AC1B5D1E5500A65D09 /* sixth.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sixth.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,12 +66,33 @@
 		6A0FE38C1B490F0800D01E9E /* BFinterpreter */ = {
 			isa = PBXGroup;
 			children = (
-				6A0FE38D1B490F0800D01E9E /* main.cpp */,
-				6A0FE3921B49103B00D01E9E /* asm.s */,
-				6A0FE3941B49123100D01E9E /* Code.txt */,
-				6A0FE3951B4923BD00D01E9E /* Test.txt */,
+				6AFBF0A01B5CE1C500A65D09 /* src */,
+				6AFBF0A51B5CE1D100A65D09 /* tests */,
 			);
 			path = BFinterpreter;
+			sourceTree = "<group>";
+		};
+		6AFBF0A01B5CE1C500A65D09 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				6AFBF0A11B5CE1C500A65D09 /* asm.s */,
+				6AFBF0A21B5CE1C500A65D09 /* main.cpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		6AFBF0A51B5CE1D100A65D09 /* tests */ = {
+			isa = PBXGroup;
+			children = (
+				6AFBF0A61B5CE1D100A65D09 /* code.txt */,
+				6AFBF0A71B5CE1D100A65D09 /* first.txt */,
+				6AFBF0A81B5D1BF100A65D09 /* second.txt */,
+				6AFBF0A91B5D1C7800A65D09 /* third.txt */,
+				6AFBF0AA1B5D1D4600A65D09 /* fourth.txt */,
+				6AFBF0AB1B5D1DC600A65D09 /* fifth.txt */,
+				6AFBF0AC1B5D1E5500A65D09 /* sixth.txt */,
+			);
+			path = tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -124,8 +150,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6A0FE38E1B490F0800D01E9E /* main.cpp in Sources */,
-				6A0FE3931B49103B00D01E9E /* asm.s in Sources */,
+				6AFBF0A41B5CE1C500A65D09 /* main.cpp in Sources */,
+				6AFBF0A31B5CE1C500A65D09 /* asm.s in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
