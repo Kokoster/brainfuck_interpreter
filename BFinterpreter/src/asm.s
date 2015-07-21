@@ -47,7 +47,7 @@ clear:
 
 clean_brackets_array:
     cmp rbx, 32768
-    je everything_is_clear
+    je end_cleaning
 
     lea rcx, [rip + brackets_array]
     mov rdx, rbx
@@ -60,7 +60,7 @@ clean_brackets_array:
 
     jmp clean_brackets_array
 
-everything_is_clear:
+end_cleaning:
 
     xor rbx, rbx
 

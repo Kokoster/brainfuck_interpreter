@@ -9,6 +9,7 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <unistd.h>
 
 //extern void interpret(std::string code);
 extern "C" void eval(const char* code);
@@ -16,27 +17,35 @@ extern "C" void eval(const char* code);
 //void interpret();
 
 int main(int argc, const char * argv[]) {
-    std::ifstream bfStream("/Users/kokoster/Documents/projects/BFinterpreter/BFinterpreter/tests/first.txt");
+//    char * dir = getcwd(NULL, 0);
+//    std::cout << "Current dir: " << dir << std::endl;
+    
+    std::ifstream bfStream("BFinterpreter/tests/first.txt");
     std::string code;
+    
+//    if (bfStream.fail()) {
+//        std::cout << "fail" << std::endl;
+//    }
 
     bfStream >> code;
     eval(code.c_str());
     std::cout << std::endl;
     bfStream.close();
     
-    bfStream.open("/Users/kokoster/Documents/projects/BFinterpreter/BFinterpreter/tests/second.txt");
+//    bfStream.open("/Users/kokoster/Documents/projects/BFinterpreter/BFinterpreter/tests/second.txt");
+    bfStream.open("BFinterpreter/tests/second.txt");
     bfStream >> code;
     eval(code.c_str());
     std::cout << std::endl;
     bfStream.close();
     
-    bfStream.open("/Users/kokoster/Documents/projects/BFinterpreter/BFinterpreter/tests/third.txt");
+    bfStream.open("BFinterpreter/tests/third.txt");
     bfStream >> code;
     eval(code.c_str());
 //    std::cout << std::endl;
     bfStream.close();
     
-    bfStream.open("/Users/kokoster/Documents/projects/BFinterpreter/BFinterpreter/tests/fourth.txt");
+    bfStream.open("BFinterpreter/tests/fourth.txt");
     bfStream >> code;
     eval(code.c_str());
     std::cout << std::endl;
@@ -48,7 +57,7 @@ int main(int argc, const char * argv[]) {
 //    std::cout << std::endl;
 //    bfStream.close();
     
-    bfStream.open("/Users/kokoster/Documents/projects/BFinterpreter/BFinterpreter/tests/sixth.txt");
+    bfStream.open("BFinterpreter/tests/sixth.txt");
     bfStream >> code;
     eval(code.c_str());
     std::cout << std::endl;
