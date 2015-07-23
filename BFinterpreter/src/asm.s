@@ -11,6 +11,7 @@
 .data
 memory_array  : .space 30000, 0 // ??
 brackets_array: .space 131072, 0
+error_message: .asciz "error: exceeded array bounds"
 
 .text
 
@@ -64,10 +65,6 @@ end_cleaning:
 
     xor rbx, rbx
 
-    lea rdx, [rip + memory_array]
-
-    mov [rbp - 56], rdx // [rbp - 56] memory array
-
     mov [rbp - 40], rdi // [rbp - 40] eval string
 
     push rdi
@@ -77,7 +74,9 @@ end_cleaning:
     mov [rbp - 32], rax // [rpb - 32] – eval string length
     xor rbx, rbx // rbx - current eval string index, bx?
 
-    mov rdx, [rbp - 56]
+    lea rdx, [rip + memory_array]
+    mov [rbp - 80], rdx
+    xor rdx, rdx
 
     mov dword ptr [rbp - 88], 0 // brackets array index
     mov dword ptr [rbp - 84], 0
@@ -124,23 +123,56 @@ begin:
 
 data_pointer_inc:
 //    inc rdx
-    add rdx, 8 // rdx - current memory index
+    inc rdx// rdx - current memory index
+
+    cmp rdx, 30000
+    jge print_error_message
 
     jmp end_section
 
 data_pointer_dec:
 //    dec rdx
-    sub rdx, 8
+    dec rdx
+
+    cmp rdx, 0
+    jl print_error_message
 
     jmp end_section
 
+print_error_message:
+    lea rdi, [rip + error_message]
+
+    mov [rbp - 48], rcx
+    mov [rbp - 56], rdx
+    sub rsp, 8
+
+    call _printf
+
+    add rsp, 8
+    mov rcx, [rbp - 48]
+    mov rdx, [rbp - 56]
+
+    jmp exit
+
 data_inc:
-    inc [rdx]
+    mov [rbp - 72], rcx
+    xor rcx, rcx
+    mov rcx, [rbp - 80]
+    add rcx, rdx
+    inc [rcx]
+
+    mov rcx, [rbp - 72]
 
     jmp end_section
 
 data_dec:
-    dec [rdx]
+    mov [rbp - 72], rcx
+    xor rcx, rcx
+    mov rcx, [rbp - 80]
+    add rcx, rdx
+    dec [rcx]
+
+    mov rcx, [rbp - 72]
 
     jmp end_section
 
@@ -148,9 +180,15 @@ data_output:
     mov [rbp - 48], rcx
     mov [rbp - 56], rdx
 
-    mov rdi, [rdx]
-    push rdi // push [rdx] ?
-//    push [rdx] // так падает
+    xor rcx, rcx
+    mov rcx, [rbp - 80]
+    add rcx, rdx
+
+    mov rdi, [rcx]
+    sub rsp, 8
+//    push rdi // push [rdx] ?
+//    sub rsp, 4
+//    push qword ptr [rdx] // так падает
     call _putchar
     add rsp, 8
 
@@ -164,7 +202,12 @@ data_input:
     mov [rbp - 56], rdx
 
     call _getchar
-    mov [rdx], rax
+
+    xor rcx, rcx
+    mov rcx, [rbp - 80]
+    add rcx, rdx
+
+    mov [rcx], rax
 
     mov rcx, [rbp - 48]
     mov rdx, [rbp - 56]
@@ -192,15 +235,24 @@ end_loop:
     cmp [rbp - 88], 0 // check excess closing brackets
     jle end_section
 
-    cmp [rdx], 0
+    mov [rbp - 64], rcx
+    xor rcx, rcx
+    mov rcx, qword ptr [rbp - 80]
+    add rcx, rdx
+    xor rax, rax
+    mov al, [cl]
+
+    cmp al, 0
     jne return_to_begin
+
+    mov rcx, [rbp - 64]
 
     dec [rbp - 88]
 
     jmp end_section
 
 return_to_begin:
-    mov [rbp - 64], rcx
+//    mov [rbp - 64], rcx
     mov [rbp - 72], rdx
 
     lea rax, [rip + brackets_array]
@@ -225,6 +277,7 @@ end_section:
 
 end:
 
+exit:
     add rsp, 131072 +  64
     pop rdx
     pop rcx

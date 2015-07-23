@@ -20,25 +20,24 @@ int main(int argc, const char * argv[]) {
 //    char * dir = getcwd(NULL, 0);
 //    std::cout << "Current dir: " << dir << std::endl;
     
-    std::ifstream bfStream("BFinterpreter/tests/first.txt");
+    std::ifstream bfStream("BFinterpreter/tests/second.txt");
     std::string code;
     
-//    if (bfStream.fail()) {
-//        std::cout << "fail" << std::endl;
-//    }
+    if (bfStream.fail()) {
+        std::cout << "fail" << std::endl;
+    }
 
     bfStream >> code;
     eval(code.c_str());
     std::cout << std::endl;
     bfStream.close();
     
-//    bfStream.open("/Users/kokoster/Documents/projects/BFinterpreter/BFinterpreter/tests/second.txt");
     bfStream.open("BFinterpreter/tests/second.txt");
     bfStream >> code;
     eval(code.c_str());
     std::cout << std::endl;
     bfStream.close();
-    
+
     bfStream.open("BFinterpreter/tests/third.txt");
     bfStream >> code;
     eval(code.c_str());
@@ -51,13 +50,26 @@ int main(int argc, const char * argv[]) {
     std::cout << std::endl;
     bfStream.close();
     
-//    bfStream.open("/Users/kokoster/Documents/projects/BFinterpreter/BFinterpreter/tests/fifth.txt");
+//    bfStream.open("BFinterpreter/tests/fifth.txt");
+//    
 //    bfStream >> code;
 //    eval(code.c_str());
 //    std::cout << std::endl;
 //    bfStream.close();
     
     bfStream.open("BFinterpreter/tests/sixth.txt");
+    bfStream >> code;
+    eval(code.c_str());
+    std::cout << std::endl;
+    bfStream.close();
+    
+    bfStream.open("BFinterpreter/tests/seventh.txt");
+    bfStream >> code;
+    eval(code.c_str());
+    std::cout << std::endl;
+    bfStream.close();
+    
+    bfStream.open("BFinterpreter/tests/eighth.txt");
     bfStream >> code;
     eval(code.c_str());
     std::cout << std::endl;

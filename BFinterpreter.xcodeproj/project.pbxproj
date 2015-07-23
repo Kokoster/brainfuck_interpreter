@@ -34,6 +34,8 @@
 		6AFBF0AA1B5D1D4600A65D09 /* fourth.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fourth.txt; sourceTree = "<group>"; };
 		6AFBF0AB1B5D1DC600A65D09 /* fifth.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fifth.txt; sourceTree = "<group>"; };
 		6AFBF0AC1B5D1E5500A65D09 /* sixth.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sixth.txt; sourceTree = "<group>"; };
+		6AFBF0AD1B5FC32D00A65D09 /* seventh.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = seventh.txt; sourceTree = "<group>"; };
+		6AFBF0AE1B5FC36100A65D09 /* eighth.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = eighth.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,8 @@
 				6AFBF0AA1B5D1D4600A65D09 /* fourth.txt */,
 				6AFBF0AB1B5D1DC600A65D09 /* fifth.txt */,
 				6AFBF0AC1B5D1E5500A65D09 /* sixth.txt */,
+				6AFBF0AD1B5FC32D00A65D09 /* seventh.txt */,
+				6AFBF0AE1B5FC36100A65D09 /* eighth.txt */,
 			);
 			path = tests;
 			sourceTree = "<group>";
