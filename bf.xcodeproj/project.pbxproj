@@ -24,7 +24,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		6A0FE38A1B490F0800D01E9E /* BFinterpreter */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BFinterpreter; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A0FE38A1B490F0800D01E9E /* bf */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = bf; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AFBF0A11B5CE1C500A65D09 /* asm.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = asm.s; sourceTree = "<group>"; };
 		6AFBF0A21B5CE1C500A65D09 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		6AFBF0A61B5CE1D100A65D09 /* code.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = code.txt; sourceTree = "<group>"; };
@@ -36,6 +36,7 @@
 		6AFBF0AC1B5D1E5500A65D09 /* sixth.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sixth.txt; sourceTree = "<group>"; };
 		6AFBF0AD1B5FC32D00A65D09 /* seventh.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = seventh.txt; sourceTree = "<group>"; };
 		6AFBF0AE1B5FC36100A65D09 /* eighth.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = eighth.txt; sourceTree = "<group>"; };
+		6AFBF0AF1B61208A00A65D09 /* ningth.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ningth.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +61,7 @@
 		6A0FE38B1B490F0800D01E9E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6A0FE38A1B490F0800D01E9E /* BFinterpreter */,
+				6A0FE38A1B490F0800D01E9E /* bf */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,6 +96,7 @@
 				6AFBF0AC1B5D1E5500A65D09 /* sixth.txt */,
 				6AFBF0AD1B5FC32D00A65D09 /* seventh.txt */,
 				6AFBF0AE1B5FC36100A65D09 /* eighth.txt */,
+				6AFBF0AF1B61208A00A65D09 /* ningth.txt */,
 			);
 			path = tests;
 			sourceTree = "<group>";
@@ -102,9 +104,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6A0FE3891B490F0800D01E9E /* BFinterpreter */ = {
+		6A0FE3891B490F0800D01E9E /* bf */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6A0FE38F1B490F0800D01E9E /* Build configuration list for PBXNativeTarget "BFinterpreter" */;
+			buildConfigurationList = 6A0FE38F1B490F0800D01E9E /* Build configuration list for PBXNativeTarget "bf" */;
 			buildPhases = (
 				6A0FE3861B490F0800D01E9E /* Sources */,
 				6A0FE3871B490F0800D01E9E /* Frameworks */,
@@ -114,9 +116,9 @@
 			);
 			dependencies = (
 			);
-			name = BFinterpreter;
+			name = bf;
 			productName = BFinterpreter;
-			productReference = 6A0FE38A1B490F0800D01E9E /* BFinterpreter */;
+			productReference = 6A0FE38A1B490F0800D01E9E /* bf */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -132,7 +134,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 6A0FE3831B490E0500D01E9E /* Build configuration list for PBXProject "BFinterpreter" */;
+			buildConfigurationList = 6A0FE3831B490E0500D01E9E /* Build configuration list for PBXProject "bf" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -144,7 +146,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6A0FE3891B490F0800D01E9E /* BFinterpreter */,
+				6A0FE3891B490F0800D01E9E /* bf */,
 			);
 		};
 /* End PBXProject section */
@@ -222,7 +224,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = bf;
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -260,7 +262,7 @@
 				LINKER_DISPLAYS_MANGLED_NAMES = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = bf;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -268,7 +270,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6A0FE3831B490E0500D01E9E /* Build configuration list for PBXProject "BFinterpreter" */ = {
+		6A0FE3831B490E0500D01E9E /* Build configuration list for PBXProject "bf" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6A0FE3841B490E0500D01E9E /* Debug */,
@@ -277,7 +279,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6A0FE38F1B490F0800D01E9E /* Build configuration list for PBXNativeTarget "BFinterpreter" */ = {
+		6A0FE38F1B490F0800D01E9E /* Build configuration list for PBXNativeTarget "bf" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6A0FE3901B490F0800D01E9E /* Debug */,

@@ -121,6 +121,8 @@ begin:
     cmp byte ptr  [rcx], 93
     je end_loop
 
+    jmp end_section
+
 data_pointer_inc:
 //    inc rdx
     inc rdx// rdx - current memory index
